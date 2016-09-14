@@ -1,0 +1,2 @@
+Install-Package mongocsharpdriver -Version 2.2.4
+ Install-Package xunit -Version 2.1.0

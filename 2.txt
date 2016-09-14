@@ -1,0 +1,39 @@
+using System;
+using System.Collections.Generic;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
+using MongoDB.Bson.Serialization.IdGenerators;
+
+namespace BsonDocumentTest
+{
+    //[BsonIgnoreExtraElements]
+    //[BsonNoId]
+    public class User
+    {
+        [BsonId(IdGenerator = typeof(BsonObjectIdGenerator))]
+        public BsonValue Id { get; set; }//Represent how _id
+
+        //[BsonElement("RegId")]
+        //[BsonIgnoreIfDefault]
+        public int RegistartionId { get; set; }
+
+        public string Name { get; set; }
+
+        // [BsonDateTimeOptions(DateOnly = true)]
+        [BsonRepresentation(BsonType.DateTime)]
+        public DateTime Birthday { get; set; }
+
+        // [BsonDateTimeOptions(Kind = DateTimeKind.Local, Representation = BsonType.DateTime)]
+        public DateTime RegistrationLocal { get; set; }
+
+        public DateTime RegistrationUtc { get; set; }
+
+        [BsonIgnoreIfNull]
+        public Phones Phones { get; set; }
+    }
+
+    public class Phones
+    {
+        public List<string> Numbers { get; set; }
+    }
+}
